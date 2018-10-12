@@ -20,6 +20,9 @@
 		4B4EFA9721708A000074A4DA /* WeatherContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EFA91217089FF0074A4DA /* WeatherContainerViewController.swift */; };
 		4B4EFA9821708A000074A4DA /* WeatherTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EFA92217089FF0074A4DA /* WeatherTableModel.swift */; };
 		4B4EFA9921708A000074A4DA /* WeatherTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EFA93217089FF0074A4DA /* WeatherTableViewController.swift */; };
+		4B4EFA9B21708C620074A4DA /* WeatherJsonResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EFA9A21708C620074A4DA /* WeatherJsonResponse.swift */; };
+		4B4EFA9E217091960074A4DA /* WeatherItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EFA9C217091960074A4DA /* WeatherItem+CoreDataClass.swift */; };
+		4B4EFA9F217091960074A4DA /* WeatherItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EFA9D217091960074A4DA /* WeatherItem+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +62,9 @@
 		4B4EFA91217089FF0074A4DA /* WeatherContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherContainerViewController.swift; sourceTree = "<group>"; };
 		4B4EFA92217089FF0074A4DA /* WeatherTableModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherTableModel.swift; sourceTree = "<group>"; };
 		4B4EFA93217089FF0074A4DA /* WeatherTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherTableViewController.swift; sourceTree = "<group>"; };
+		4B4EFA9A21708C620074A4DA /* WeatherJsonResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherJsonResponse.swift; sourceTree = "<group>"; };
+		4B4EFA9C217091960074A4DA /* WeatherItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeatherItem+CoreDataClass.swift"; sourceTree = "<group>"; };
+		4B4EFA9D217091960074A4DA /* WeatherItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeatherItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +115,8 @@
 		4B4EFA5C217089E60074A4DA /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				4B4EFA9C217091960074A4DA /* WeatherItem+CoreDataClass.swift */,
+				4B4EFA9D217091960074A4DA /* WeatherItem+CoreDataProperties.swift */,
 				4B4EFA90217089FF0074A4DA /* Constant.swift */,
 				4B4EFA8E217089FF0074A4DA /* TemperatureTableViewCell.swift */,
 				4B4EFA8F217089FF0074A4DA /* TemperatureTableViewCell.xib */,
@@ -121,6 +129,7 @@
 				4B4EFA69217089E70074A4DA /* LaunchScreen.storyboard */,
 				4B4EFA6C217089E70074A4DA /* Info.plist */,
 				4B4EFA64217089E60074A4DA /* Weather.xcdatamodeld */,
+				4B4EFA9A21708C620074A4DA /* WeatherJsonResponse.swift */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -280,8 +289,11 @@
 				4B4EFA9821708A000074A4DA /* WeatherTableModel.swift in Sources */,
 				4B4EFA9421708A000074A4DA /* TemperatureTableViewCell.swift in Sources */,
 				4B4EFA5E217089E60074A4DA /* AppDelegate.swift in Sources */,
+				4B4EFA9B21708C620074A4DA /* WeatherJsonResponse.swift in Sources */,
 				4B4EFA9721708A000074A4DA /* WeatherContainerViewController.swift in Sources */,
 				4B4EFA9621708A000074A4DA /* Constant.swift in Sources */,
+				4B4EFA9E217091960074A4DA /* WeatherItem+CoreDataClass.swift in Sources */,
+				4B4EFA9F217091960074A4DA /* WeatherItem+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
