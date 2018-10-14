@@ -10,6 +10,8 @@ import UIKit
 
 class TemperatureTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var temperatureLabel: UILabel!
+    @IBOutlet weak var placeLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

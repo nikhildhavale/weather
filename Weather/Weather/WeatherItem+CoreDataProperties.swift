@@ -33,5 +33,5 @@ extension WeatherItem {
     @NSManaged public var clouds: Int16
     @NSManaged public var name: String?
     @NSManaged public var date: Int64
-    @NSManaged public var idcity:Int16
+    @NSManaged public var idcity:Int64
 }

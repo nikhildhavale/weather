@@ -17,9 +17,16 @@ class WeatherTableViewController: UITableViewController,WeatherUIDelegate,NSFetc
 
         self.tableView .register(UINib(nibName: "TemperatureTableViewCell", bundle: nil), forCellReuseIdentifier: AppConstants.weatherItemIdentifier)
         self.tableView.tableFooterView = UIView()
+        self.tableView.refreshControl = UIRefreshControl()
+        self.tableView.refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         weatherTableModel = WeatherTableModel(delegate: self)
         weatherTableModel?.initialise()
         weatherTableModel?.requestDataFromServer()
+        
+    }
+    @objc func refreshData(){
+        weatherTableModel?.requestDataFromServer()
+
     }
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?){
         guard let indexPathNonNil = newIndexPath else {
@@ -44,9 +51,11 @@ class WeatherTableViewController: UITableViewController,WeatherUIDelegate,NSFetc
     }
     
     func UIChange() {
+        
         if let parent = self.parent as? WeatherContainerViewController {
             parent.activityIndicatorView.isHidden = true
         }
+        self.tableView.refreshControl?.endRefreshing()
     }
     
     func failure(error:Error) {
@@ -58,18 +67,20 @@ class WeatherTableViewController: UITableViewController,WeatherUIDelegate,NSFetc
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return weatherTableModel?.resultViewController.sections?[section].numberOfObjects ?? 0
     }
 
-    /*
+    /**/
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: AppConstants.weatherItemIdentifier, for: indexPath)
+        as! TemperatureTableViewCell
+        if let weatherItem = weatherTableModel?.resultViewController.object(at: indexPath) {
+            cell.temperatureLabel.text = "\(weatherItem.temp)"
+            cell.placeLabel.text = weatherItem.name
+        }
         return cell
     }
-    */
+ 
 
     /*
     // Override to support conditional editing of the table view.

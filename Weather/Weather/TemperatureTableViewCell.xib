@@ -17,8 +17,36 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cw2-5G-1JT">
+                        <rect key="frame" x="176" y="11" width="128" height="22"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mgk-49-g0L">
+                        <rect key="frame" x="16" y="11" width="128" height="22"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="mgk-49-g0L" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="5hA-pQ-qJB"/>
+                    <constraint firstItem="Cw2-5G-1JT" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="L32-ps-Av1"/>
+                    <constraint firstItem="Cw2-5G-1JT" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="Tbw-F6-TBr"/>
+                    <constraint firstItem="Cw2-5G-1JT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="lIz-kq-CdZ"/>
+                    <constraint firstItem="Cw2-5G-1JT" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.4" id="mYU-As-uDd"/>
+                    <constraint firstItem="mgk-49-g0L" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.4" id="nhR-Fj-XHs"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="mgk-49-g0L" secondAttribute="bottom" id="pp7-Cz-vaY"/>
+                    <constraint firstItem="mgk-49-g0L" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="tgX-Lg-UqP"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="placeLabel" destination="mgk-49-g0L" id="IQv-wn-33x"/>
+                <outlet property="temperatureLabel" destination="Cw2-5G-1JT" id="9xT-w7-rlm"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

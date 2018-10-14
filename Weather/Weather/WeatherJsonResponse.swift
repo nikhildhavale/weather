@@ -21,8 +21,8 @@ class WeatherResponse:Codable {
     var cod:Int?
 }
 class Coordinate:Codable {
-    var lat:Int?
-    var lon:Int?
+    var lat:Float?
+    var lon:Float?
 }
 class SunInfo: Codable {
     var country:String?
@@ -39,8 +39,8 @@ class TempInfo:Codable{
     var temp:Float?
     var humidity:Int?
     var pressure:Int?
-    var temp_min:String?
-    var temp_max:String?
+    var temp_min:Float?
+    var temp_max:Float?
 }
 class Wind:Codable{
     var speed:Float?

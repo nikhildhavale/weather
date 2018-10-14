@@ -15,26 +15,59 @@ protocol WeatherUIDelegate:class  {
     func failure(error:Error)
  }
 class WeatherTableModel {
-    var resultViewController:NSFetchedResultsController<NSFetchRequestResult>?
+    var resultViewController:NSFetchedResultsController<WeatherItem>
     var networkSession:NetworkSession?
     weak var delegate:(WeatherUIDelegate & NSFetchedResultsControllerDelegate)?
 
     init(delegate:(WeatherUIDelegate & NSFetchedResultsControllerDelegate)) {
       self.delegate = delegate
-
+        
+        resultViewController = DatabaseModel.shared.getFetchRequestController()
+        resultViewController.delegate = delegate
 
     }
     func initialise(){
         networkSession = NetworkSession(success: { (data,requestString,url) in
-            self.delegate?.success()
+                let jsonDecoder = JSONDecoder()
+            do {
+                let weatherResponse = try jsonDecoder.decode(WeatherResponse.self, from: data)
+                if let id = weatherResponse.id {
+                    if let weatherItem =   DatabaseModel.shared.getWeatherInfo(with: Int(id)) {
+                        if weatherItem.temp != weatherResponse.main?.temp || weatherItem.tempMax != weatherResponse.main?.temp_max || weatherItem.tempMin != weatherResponse.main?.temp_min
+                        {
+                            DatabaseModel.shared.updateWeatherItem(weatherItem: weatherItem, weatherResponse: weatherResponse)
+                        }
+                    }
+                    else {
+                        DatabaseModel.shared.insertWeatherItem(weatherResponse: weatherResponse)
+                    }
+                }
+                
+                self.delegate?.success()
+
+            }
+            catch{
+                print(error)
+            }
             
         }, andFailure: { (error,requestString,url) in
             self.delegate?.failure(error: error)
             
         }, andCommonUI:{
-            self.delegate?.UIChange()
+            DispatchQueue.main.async {
+                self.delegate?.UIChange()
+
+            }
             
         })
+        do {
+           try resultViewController.performFetch()
+            
+        }
+        catch{
+            
+        }
+
     }
     func requestDataFromServer(){
         for cityId in Location.locationId {
