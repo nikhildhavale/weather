@@ -15,11 +15,13 @@ class WeatherDetailTableViewController: UITableViewController {
         super.viewDidLoad()
 
         self.tableView .register(UINib(nibName: "TemperatureTableViewCell", bundle: nil), forCellReuseIdentifier: AppConstants.weatherItemIdentifier)
-        self.tableView .register(UINib(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: AppConstants.weatherDetailIdentifier)
+      //  self.tableView .register(UINib(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: AppConstants.weatherDetailIdentifier)
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: AppConstants.weatherDetailIdentifier)
         if let weatherItemNonNil = weatherItem {
             weatherDetailModel = WeatherDetailModel(weatherItem: weatherItemNonNil)
 
         }
+        tableView.tableFooterView = UIView()
     }
     
     // MARK: - Table view data source
@@ -36,18 +38,28 @@ class WeatherDetailTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if   let info =  weatherDetailModel?.getCellInfoAtIndex(indexPath: indexPath){
-            if let cell = tableView.dequeueReusableCell(withIdentifier: info.cellType, for: indexPath) as? TemperatureTableViewCell {
-                cell.placeLabel.text = "\(info.title)"
-                cell.temperatureLabel.text = "\(info.info ?? "")"
+            if let cell = tableView.dequeueReusableCell(withIdentifier: AppConstants.weatherItemIdentifier, for: indexPath) as? TemperatureTableViewCell {
+                if info.cellType == AppConstants.weatherItemIdentifier {
+                    cell.placeLabel.text = "\(info.title)"
+                    cell.temperatureLabel.text = "\(info.info ?? "")"
+                }
+                else {
+                    cell.placeLabel.text = "\(info.info ?? "")"
+                    cell.temperatureLabel.text = nil
+                }
                 return cell
             }
-            else if let cell = tableView.dequeueReusableCell(withIdentifier: info.cellType, for: indexPath) as? TitleTableViewCell{
-                cell.titleLabel.text = "\(info.info ?? "")"
+            else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: info.cellType, for: indexPath)
+                cell.textLabel?.text = "\(info.info ?? "")"
+                cell.textLabel?.textColor = UIColor.black
+                print("\(info.info ?? "")")
             }
             
-        }
-        let cell = tableView.dequeueReusableCell(withIdentifier: AppConstants.weatherDetailIdentifier , for: indexPath)
+            
 
+    }
+        let cell = tableView.dequeueReusableCell(withIdentifier: AppConstants.weatherDetailIdentifier, for: indexPath)
         return cell
     }
  

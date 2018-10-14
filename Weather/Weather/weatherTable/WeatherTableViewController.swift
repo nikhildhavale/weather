@@ -82,7 +82,7 @@ class WeatherTableViewController: UITableViewController,WeatherUIDelegate,NSFetc
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        
-            self.parent?.performSegue(withIdentifier: AppConstants.weatherDetailIdentifier, sender: weatherTableModel?.resultViewController.object(at: indexPath))
+            self.parent?.performSegue(withIdentifier: AppConstants.showDetails, sender: weatherTableModel?.resultViewController.object(at: indexPath))
 
         
     }
