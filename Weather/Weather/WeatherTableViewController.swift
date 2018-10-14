@@ -7,15 +7,51 @@
 //
 
 import UIKit
-
-class WeatherTableViewController: UITableViewController {
+import CoreData
+class WeatherTableViewController: UITableViewController,WeatherUIDelegate,NSFetchedResultsControllerDelegate{
+    var weatherTableModel:WeatherTableModel?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.tableView .register(UINib(nibName: "TemperatureTableViewCell", bundle: nil), forCellReuseIdentifier: AppConstants.weatherItemIdentifier)
+        self.tableView.tableFooterView = UIView()
+        weatherTableModel = WeatherTableModel(delegate: self)
+        weatherTableModel?.initialise()
+        weatherTableModel?.requestDataFromServer()
     }
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?){
+        guard let indexPathNonNil = newIndexPath else {
+            return
+        }
 
+        switch type {
+
+        case .insert:
+                tableView.insertRows(at: [indexPathNonNil], with: UITableView.RowAnimation.automatic)
+        case .delete:
+                tableView.deleteRows(at: [indexPathNonNil], with: UITableView.RowAnimation.automatic)
+        case .move:break
+            
+        case .update:
+            tableView.reloadRows(at: [indexPathNonNil], with: UITableView.RowAnimation.automatic)
+            
+        }
+    }
+    func success() {
+        
+    }
+    
+    func UIChange() {
+        if let parent = self.parent as? WeatherContainerViewController {
+            parent.activityIndicatorView.isHidden = true
+        }
+    }
+    
+    func failure(error:Error) {
+        self.showAlertOK(title: "Error", message: error.localizedDescription)
+    }
     // MARK: - Table view data source
 
 

@@ -23,6 +23,11 @@
 		4B4EFA9B21708C620074A4DA /* WeatherJsonResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EFA9A21708C620074A4DA /* WeatherJsonResponse.swift */; };
 		4B4EFA9E217091960074A4DA /* WeatherItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EFA9C217091960074A4DA /* WeatherItem+CoreDataClass.swift */; };
 		4B4EFA9F217091960074A4DA /* WeatherItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EFA9D217091960074A4DA /* WeatherItem+CoreDataProperties.swift */; };
+		4B6185A221735F1F003BBEC2 /* ActivityIndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6185A121735F1F003BBEC2 /* ActivityIndicatorViewController.swift */; };
+		4B6185A4217362BE003BBEC2 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6185A3217362BE003BBEC2 /* Enum.swift */; };
+		4B6185A621736350003BBEC2 /* NetworkSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6185A52173634F003BBEC2 /* NetworkSession.swift */; };
+		4B6185A8217366FA003BBEC2 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6185A7217366FA003BBEC2 /* Extension.swift */; };
+		4B6185AA2173673D003BBEC2 /* DatabaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6185A92173673D003BBEC2 /* DatabaseModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +70,11 @@
 		4B4EFA9A21708C620074A4DA /* WeatherJsonResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherJsonResponse.swift; sourceTree = "<group>"; };
 		4B4EFA9C217091960074A4DA /* WeatherItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeatherItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4B4EFA9D217091960074A4DA /* WeatherItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeatherItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4B6185A121735F1F003BBEC2 /* ActivityIndicatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorViewController.swift; sourceTree = "<group>"; };
+		4B6185A3217362BE003BBEC2 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
+		4B6185A52173634F003BBEC2 /* NetworkSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkSession.swift; sourceTree = "<group>"; };
+		4B6185A7217366FA003BBEC2 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		4B6185A92173673D003BBEC2 /* DatabaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,9 +125,13 @@
 		4B4EFA5C217089E60074A4DA /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				4B6185A52173634F003BBEC2 /* NetworkSession.swift */,
+				4B6185A7217366FA003BBEC2 /* Extension.swift */,
+				4B6185A121735F1F003BBEC2 /* ActivityIndicatorViewController.swift */,
 				4B4EFA9C217091960074A4DA /* WeatherItem+CoreDataClass.swift */,
 				4B4EFA9D217091960074A4DA /* WeatherItem+CoreDataProperties.swift */,
 				4B4EFA90217089FF0074A4DA /* Constant.swift */,
+				4B6185A3217362BE003BBEC2 /* Enum.swift */,
 				4B4EFA8E217089FF0074A4DA /* TemperatureTableViewCell.swift */,
 				4B4EFA8F217089FF0074A4DA /* TemperatureTableViewCell.xib */,
 				4B4EFA91217089FF0074A4DA /* WeatherContainerViewController.swift */,
@@ -130,6 +144,7 @@
 				4B4EFA6C217089E70074A4DA /* Info.plist */,
 				4B4EFA64217089E60074A4DA /* Weather.xcdatamodeld */,
 				4B4EFA9A21708C620074A4DA /* WeatherJsonResponse.swift */,
+				4B6185A92173673D003BBEC2 /* DatabaseModel.swift */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -284,12 +299,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B6185AA2173673D003BBEC2 /* DatabaseModel.swift in Sources */,
 				4B4EFA9921708A000074A4DA /* WeatherTableViewController.swift in Sources */,
 				4B4EFA66217089E60074A4DA /* Weather.xcdatamodeld in Sources */,
+				4B6185A4217362BE003BBEC2 /* Enum.swift in Sources */,
 				4B4EFA9821708A000074A4DA /* WeatherTableModel.swift in Sources */,
+				4B6185A221735F1F003BBEC2 /* ActivityIndicatorViewController.swift in Sources */,
 				4B4EFA9421708A000074A4DA /* TemperatureTableViewCell.swift in Sources */,
 				4B4EFA5E217089E60074A4DA /* AppDelegate.swift in Sources */,
+				4B6185A621736350003BBEC2 /* NetworkSession.swift in Sources */,
 				4B4EFA9B21708C620074A4DA /* WeatherJsonResponse.swift in Sources */,
+				4B6185A8217366FA003BBEC2 /* Extension.swift in Sources */,
 				4B4EFA9721708A000074A4DA /* WeatherContainerViewController.swift in Sources */,
 				4B4EFA9621708A000074A4DA /* Constant.swift in Sources */,
 				4B4EFA9E217091960074A4DA /* WeatherItem+CoreDataClass.swift in Sources */,

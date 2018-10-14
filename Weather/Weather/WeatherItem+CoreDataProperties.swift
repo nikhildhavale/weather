@@ -14,7 +14,7 @@ import CoreData
 extension WeatherItem {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<WeatherItem> {
-        return NSFetchRequest<WeatherItem>(entityName: "WeatherItem")
+        return NSFetchRequest<WeatherItem>(entityName: AppConstants.weatherItem)
     }
 
     @NSManaged public var country: String?
@@ -33,5 +33,5 @@ extension WeatherItem {
     @NSManaged public var clouds: Int16
     @NSManaged public var name: String?
     @NSManaged public var date: Int64
-
+    @NSManaged public var idcity:Int16
 }
