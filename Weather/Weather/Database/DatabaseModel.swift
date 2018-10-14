@@ -58,6 +58,7 @@ class DatabaseModel {
             weatherItem.humidity = Int32(weatherResponse.main?.humidity ?? 0)
             weatherItem.pressure = Int64(weatherResponse.main?.pressure ?? 0)
             weatherItem.wind = weatherResponse.wind?.speed ?? 0
+            weatherItem.deg = weatherResponse.wind?.deg ?? 0 
             weatherItem.rain = Int16(weatherResponse.rain?.h ?? 0)
             weatherItem.clouds = Int16(weatherResponse.clouds?.all ?? 0)
             weatherItem.name = weatherResponse.name

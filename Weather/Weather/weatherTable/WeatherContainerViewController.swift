@@ -26,6 +26,10 @@ class WeatherContainerViewController: UIViewController {
         if let activityIndicatorViewController = segue.destination as? ActivityIndicatorViewController{
             activityIndicatorViewController.customTextString = AppConstants.loadingData
         }
+        else if let weatherDetailController = segue.destination as? WeatherDetailTableViewController {
+            weatherDetailController.weatherItem = sender as? WeatherItem
+        }
+        
     }
  
 

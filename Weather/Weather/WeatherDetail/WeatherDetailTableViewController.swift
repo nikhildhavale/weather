@@ -1,83 +1,53 @@
 //
-//  WeatherTableViewController.swift
+//  WeatherDetailTableViewController.swift
 //  Weather
 //
-//  Created by Nikhil Modi on 10/12/18.
+//  Created by Nikhil Modi on 10/14/18.
 //  Copyright © 2018 Nikhil Dhavale. All rights reserved.
 //
 
 import UIKit
-import CoreData
-class WeatherTableViewController: UITableViewController,WeatherUIDelegate,NSFetchedResultsControllerDelegate{
-    var weatherTableModel:WeatherTableModel?
-    
 
+class WeatherDetailTableViewController: UITableViewController {
+    var weatherItem:WeatherItem?
+    var weatherDetailModel:WeatherDetailModel?
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.tableView .register(UINib(nibName: "TemperatureTableViewCell", bundle: nil), forCellReuseIdentifier: AppConstants.weatherItemIdentifier)
-        self.tableView.tableFooterView = UIView()
-        self.tableView.refreshControl = UIRefreshControl()
-        self.tableView.refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
-        weatherTableModel = WeatherTableModel(delegate: self)
-        weatherTableModel?.initialise()
-        weatherTableModel?.requestDataFromServer()
-        
-    }
-    @objc func refreshData(){
-        weatherTableModel?.requestDataFromServer()
+        self.tableView .register(UINib(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: AppConstants.weatherDetailIdentifier)
+        if let weatherItemNonNil = weatherItem {
+            weatherDetailModel = WeatherDetailModel(weatherItem: weatherItemNonNil)
 
-    }
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?){
-        guard let indexPathNonNil = newIndexPath else {
-            return
         }
-
-        switch type {
-
-        case .insert:
-                tableView.insertRows(at: [indexPathNonNil], with: UITableView.RowAnimation.automatic)
-        case .delete:
-                tableView.deleteRows(at: [indexPathNonNil], with: UITableView.RowAnimation.automatic)
-        case .move:break
-            
-        case .update:
-            tableView.reloadRows(at: [indexPathNonNil], with: UITableView.RowAnimation.automatic)
-            
-        }
-    }
-    func success() {
-        
     }
     
-    func UIChange() {
-        
-        if let parent = self.parent as? WeatherContainerViewController {
-            parent.activityIndicatorView.isHidden = true
-        }
-        self.tableView.refreshControl?.endRefreshing()
-    }
-    
-    func failure(error:Error) {
-        self.showAlertOK(title: "Error", message: error.localizedDescription)
-    }
     // MARK: - Table view data source
-
-
-
+   override func numberOfSections(in tableView: UITableView) -> Int {
+       return WeatherDetailModel.sectionTitles.count
+    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return weatherTableModel?.resultViewController.sections?[section].numberOfObjects ?? 0
+        return weatherDetailModel?.noOfRow(section: section) ?? 0 
     }
-
-    /**/
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return WeatherDetailModel.sectionTitles[section]
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: AppConstants.weatherItemIdentifier, for: indexPath)
-        as! TemperatureTableViewCell
-        if let weatherItem = weatherTableModel?.resultViewController.object(at: indexPath) {
-            cell.temperatureLabel.text = "\(weatherItem.temp)"
-            cell.placeLabel.text = weatherItem.name
+        if   let info =  weatherDetailModel?.getCellInfoAtIndex(indexPath: indexPath){
+            if let cell = tableView.dequeueReusableCell(withIdentifier: info.cellType, for: indexPath) as? TemperatureTableViewCell {
+                cell.placeLabel.text = "\(info.title)"
+                cell.temperatureLabel.text = "\(info.info ?? "")"
+                return cell
+            }
+            else if let cell = tableView.dequeueReusableCell(withIdentifier: info.cellType, for: indexPath) as? TitleTableViewCell{
+                cell.titleLabel.text = "\(info.info ?? "")"
+            }
+            
         }
+        let cell = tableView.dequeueReusableCell(withIdentifier: AppConstants.weatherDetailIdentifier , for: indexPath)
+
         return cell
     }
  
