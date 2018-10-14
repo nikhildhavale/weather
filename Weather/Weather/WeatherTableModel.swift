@@ -32,7 +32,7 @@ class WeatherTableModel {
             do {
                 let weatherResponse = try jsonDecoder.decode(WeatherResponse.self, from: data)
                 if let id = weatherResponse.id {
-                    if let weatherItem =   DatabaseModel.shared.getWeatherInfo(with: Int(id)) {
+                    if let weatherItem =   DatabaseModel.shared.getWeatherInfo(with: Int64(id)) {
                         if weatherItem.temp != weatherResponse.main?.temp || weatherItem.tempMax != weatherResponse.main?.temp_max || weatherItem.tempMin != weatherResponse.main?.temp_min
                         {
                             DatabaseModel.shared.updateWeatherItem(weatherItem: weatherItem, weatherResponse: weatherResponse)

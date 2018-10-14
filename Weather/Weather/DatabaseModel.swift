@@ -16,14 +16,14 @@ class DatabaseModel {
       let appDelegate =   UIApplication.shared.delegate as! AppDelegate
       context = appDelegate.persistentContainer.viewContext
     }
-    func getWeatherInfo(with Id:Int) -> WeatherItem?{
+    func getWeatherInfo(with Id:Int64) -> WeatherItem?{
         let fetch = NSFetchRequest<WeatherItem>(entityName: AppConstants.weatherItem)
-        fetch.entity =  NSEntityDescription.entity(forEntityName: AppConstants.weatherItem, in: context)
-        fetch.predicate = NSPredicate(format: "idcity == %d", Id)
+        fetch.predicate = NSPredicate(format: "idcity == %lld", Id)
         do {
-           let weatherItemArray =  try fetch.execute()
+           let weatherItemArray =  try context.fetch(fetch)
             return weatherItemArray.first
         } catch  {
+            print(error)
             return nil
 
         }
